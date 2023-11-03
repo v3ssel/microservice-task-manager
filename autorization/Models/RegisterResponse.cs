@@ -1,4 +1,4 @@
-namespace Autorization.Models
+namespace TaskManager.Autorization.Models
 {
     public class RegisterResponse
     {

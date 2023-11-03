@@ -2,17 +2,20 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Autorization.Models
+namespace TaskManager.Autorization.Models
 {
     public class AuthOptions
     {
         [Required]
-        public string? ISSUER { get; set; }
+        public IEnumerable<string>? ISSUERS { get; set; }
      
         [Required]
-        public string? AUDIENCE { get; set; }
+        public IEnumerable<string>? AUDIENCE { get; set; }
      
         [Required]
-        public string? SECRET_KEY { get; set; }
+        public string? PRIVATE_KEY_PATH { get; set; }
+        
+        [Required]
+        public string? PUBLIC_KEY_PATH { get; set; }
     }
 }
