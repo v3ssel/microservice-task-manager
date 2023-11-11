@@ -10,10 +10,10 @@ namespace TaskManager.Autorization.Services
     {
         private readonly AuthOptions _authOptions;
 
-        public TokenService(IOptions<AuthOptions> authOptions)
+        public TokenService(AuthOptions authOptions)
         {
-            Validator.ValidateObject(authOptions.Value, new ValidationContext(authOptions.Value), true);
-            _authOptions = authOptions.Value;
+            Validator.ValidateObject(authOptions, new ValidationContext(authOptions), true);
+            _authOptions = authOptions;
         }
 
         public async Task<SecurityKey> SignIssuerKey()

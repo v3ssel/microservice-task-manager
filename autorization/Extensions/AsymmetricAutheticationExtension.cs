@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using TaskManager.Autorization.Models;
@@ -8,18 +9,31 @@ namespace TaskManager.Autorization.Extensions
 {
     public static class AsymmetricAutheticationExtension
     {
-        public static IServiceCollection AddAsymmetricAuthetication(this IServiceCollection services, IOptions<AuthOptions> auth, TokenService tokenService)
+        public static IServiceCollection AddAsymmetricAuthetication(this IServiceCollection services, AuthOptions auth)
         {
+            var tokenService = new TokenService(auth);
+            
+            services.AddAuthorization(opt => {
+                opt.AddPolicy("Administrator", 
+                              new AuthorizationPolicyBuilder().RequireAuthenticatedUser()
+                                                              .RequireRole("admin")
+                                                              .Build());
+                opt.AddPolicy("User", 
+                              new AuthorizationPolicyBuilder().RequireAuthenticatedUser()
+                                                              .Build());
+                opt.DefaultPolicy = opt.GetPolicy("User")!;    
+            });
+ 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                             .AddJwtBearer(
                                 async (opt) => {
                                     opt.TokenValidationParameters = new TokenValidationParameters
                                     {
                                         ValidateIssuer = true,
-                                        ValidIssuers = auth.Value.ISSUERS,
+                                        ValidIssuers = auth.ISSUERS,
                                         
                                         ValidateAudience = true,
-                                        ValidAudiences = auth.Value.AUDIENCE,
+                                        ValidAudiences = auth.AUDIENCE,
                                         
                                         ValidateLifetime = true,
 
@@ -28,7 +42,6 @@ namespace TaskManager.Autorization.Extensions
                                     };
                                 }
                             );
-            services.AddAuthorization();
 
             return services;
         }
