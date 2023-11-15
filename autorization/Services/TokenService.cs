@@ -1,8 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using TaskManager.Autorization.Models;
+using TaskManager.Autorization.Models.DTO;
 
 namespace TaskManager.Autorization.Services
 {

@@ -1,13 +1,5 @@
-using System.Data.SqlTypes;
-using System.Text;
-using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using TaskManager.Autorization.Models;
-using System.ComponentModel.DataAnnotations;
+using TaskManager.Autorization.Models.DTO;
 using MongoDB.Driver;
-using System.Security.Cryptography;
 using TaskManager.Autorization.Services;
 using TaskManager.Autorization.Extensions;
 

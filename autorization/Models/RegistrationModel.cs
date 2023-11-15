@@ -21,7 +21,7 @@ namespace TaskManager.Autorization.Models
                 }
             }
 
-            var collection = mongoClient.GetDatabase("task_manager_db").GetCollection<BsonDocument>("TM_Users");
+            var collection = mongoClient.GetDatabase("TMDB").GetCollection<BsonDocument>("TM_Users");
             var user = collection.Find($"{{ username: \"{data.Username}\" }}");
             
             if (await user.AnyAsync())

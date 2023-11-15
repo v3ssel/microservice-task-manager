@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace TaskManager.Autorization.Models.DTO
 {
     public class LoginResponse : UserDTO

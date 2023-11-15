@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using TaskManager.Autorization.Models;
+using TaskManager.Autorization.Models.DTO;
 using TaskManager.Autorization.Services;
 
 namespace TaskManager.Autorization.Extensions

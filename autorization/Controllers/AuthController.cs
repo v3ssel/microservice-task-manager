@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using TaskManager.Autorization.Services;
 using TaskManager.Autorization.Models.DTO;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Security.Claims;
 
 namespace TaskManager.Autorization.Controllers
 {
@@ -33,7 +34,7 @@ namespace TaskManager.Autorization.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "User")]
         public IActionResult ValidateToken()
         {
-            return Ok(); 
+            return Ok(HttpContext.User.Claims.Select(x => { return x.ValueType + " " + x.Value + " " + x.Type; })); 
         }
 
         [HttpGet]
@@ -41,7 +42,7 @@ namespace TaskManager.Autorization.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Administrator")]
         public IActionResult ValidateAdminToken()
         {
-            return Ok(); 
+            return Ok(HttpContext.User.Claims.Select(x => { return x.ValueType + " " + x.Value + " " + x.Type; })); 
         }
 
         [HttpPost]

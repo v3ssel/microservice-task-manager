@@ -1,8 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using Microsoft.IdentityModel.Tokens;
 
-namespace TaskManager.Autorization.Models
+namespace TaskManager.Autorization.Models.DTO
 {
     public class AuthOptions
     {

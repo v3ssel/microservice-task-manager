@@ -1,6 +1,5 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
@@ -26,7 +25,7 @@ namespace TaskManager.Autorization.Models
                 }
             }
 
-            var collection = mongoClient.GetDatabase("task_manager_db").GetCollection<BsonDocument>("TM_Users");
+            var collection = mongoClient.GetDatabase("TMDB").GetCollection<BsonDocument>("TM_Users");
             var userBson = await 
                           (await collection.FindAsync($"{{ username: \"{login.Username}\", password: \"{login.Password!.EncodeSHA512()}\" }}"))
                                            .ToListAsync();
