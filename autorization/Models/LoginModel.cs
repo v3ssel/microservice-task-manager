@@ -32,7 +32,7 @@ namespace TaskManager.Autorization.Models
 
             if (!userBson.Any())
             {
-                return new NotFoundResult();
+                return new UnauthorizedResult();
             }
 
             var user = BsonSerializer.Deserialize<UserDTO>(userBson.First());
