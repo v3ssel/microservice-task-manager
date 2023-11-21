@@ -11,7 +11,7 @@ namespace TaskManager.Autorization.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class AuthController : Controller
+    public class AuthController : ControllerBase
     {
         private readonly ILogger<AuthController> _logger;
         private readonly MongoClient _mongoClient;
