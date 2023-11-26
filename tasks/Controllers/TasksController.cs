@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace tasks.Controllers;
@@ -14,8 +16,9 @@ public class TasksController : ControllerBase
     }
 
     [HttpGet("create")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public async Task<IActionResult> CreateTask()
     {
-        return Ok();
+        return Ok(HttpContext.User.Identity.Name);
     }
 }
